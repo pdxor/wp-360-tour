@@ -54,12 +54,5 @@ A powerful WordPress plugin for creating immersive 360° panorama tours with int
 ### Managing Tours
 
 Use the 360° Tour Dashboard to:
-- Create new tours
-- Edit existing tours
-- Delete tours
-- Manage hotspots
-- Preview tours
+- make a page and choose 360 dashboard in the page template drop down and save. here you make your tours and edit them
 
-## Shortcode
-
-Embed tours in any post or page using the shortcode: 
