@@ -3,7 +3,7 @@
  * Plugin Name: WP 360° Tour
  * Description: Create interactive 360° panorama tours with hotspots
  * Version: 1.0
- * Author: Your Name
+ * Author: Kahlil Calavas
  * Author URI: https://kahlilcalavas.com
  * Text Domain: wp-360-tour
  * License: GPL v2 or later
