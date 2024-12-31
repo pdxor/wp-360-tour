@@ -1,0 +1,541 @@
+/* /assets/css/style.css */
+body.panorama-viewer {
+    margin: 0;
+    overflow: hidden;
+    touch-action: none;
+    -webkit-overflow-scrolling: none;
+    overscroll-behavior: none;
+}
+
+.panorama-viewer #wpadminbar,
+.panorama-viewer #main-header,
+.panorama-viewer #page-container,
+.panorama-viewer #main-footer {
+    display: none !important;
+}
+
+/* Control Panel */
+#controlPanel {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    color: white;
+    font-family: sans-serif;
+    pointer-events: auto;
+}
+
+#controlPanel label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+#controlPanel input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+/* Hotspots */
+.hotspot {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 123, 255, 0.8);
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+    z-index: 1000;
+    touch-action: manipulation;
+    pointer-events: all;
+    user-select: none;
+}
+
+.hotspot:hover {
+    transform: translate(-50%, -50%) scale(1.2);
+    background-color: rgba(0, 123, 255, 1);
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    pointer-events: none;
+    transform: translate(-50%, -100%);
+    margin-top: -15px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.hotspot:hover .tooltip {
+    opacity: 1;
+}
+
+/* Modal */
+#hotspotModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 9999;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    pointer-events: auto;
+}
+
+#modalError {
+    display: none;
+    color: #ff4444;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px 10px;
+    z-index: 10000;
+}
+
+.modal-close:hover {
+    color: #ff4444;
+}
+
+#hotspotTitle {
+    margin: 0 0 15px 0;
+    padding-right: 30px;
+    font-size: 24px;
+    word-break: break-word;
+}
+
+#hotspotImage {
+    max-width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border-radius: 5px;
+    display: none;
+}
+
+#hotspotText {
+    line-height: 1.5;
+    margin-top: 15px;
+}
+
+/* Form */
+#hotspotForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    z-index: 100000;
+    width: 90%;
+    max-width: 500px;
+    pointer-events: auto;
+}
+
+.input-wrapper {
+    position: relative;
+    z-index: 100002;
+    margin: 10px 0;
+}
+
+#hotspotForm input[type="text"],
+#hotspotForm textarea {
+    display: block !important;
+    width: 100% !important;
+    padding: 12px !important;
+    border: 1px solid #444 !important;
+    border-radius: 5px !important;
+    background: #fff !important;
+    color: #333 !important;
+    font-size: 16px !important;
+    font-family: inherit !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+    z-index: 100002 !important;
+    pointer-events: auto !important;
+}
+
+#hotspotForm input[type="text"] {
+    height: 40px !important;
+}
+
+#hotspotForm textarea {
+    height: 100px !important;
+    resize: vertical !important;
+}
+
+#hotspotForm button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+#hotspotForm button[type="submit"] {
+    background: #007bff;
+    color: white;
+}
+
+.choose-file-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #6c757d;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999999;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-loader {
+    width: 200px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1000000;
+}
+
+.cancel-button {
+    background: #6c757d;
+    color: white;
+}
+
+.cancel-button:hover {
+    background: #5a6268;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    #controlPanel {
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        max-width: 300px;
+        padding: 12px;
+        user-select: none;
+    }
+    
+    #controlPanel label {
+        margin-bottom: 8px;
+        padding: 8px 0;
+    }
+
+    #controlPanel input[type="checkbox"] {
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+    }
+
+    #controlPanel span {
+        font-size: 16px;
+        padding: 4px 0;
+    }
+
+    .hotspot {
+        width: 40px;
+        height: 40px;
+    }
+
+    #hotspotModal {
+        padding: 15px;
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    #hotspotModal #hotspotTitle {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    #hotspotModal .modal-close {
+        font-size: 28px;
+        padding: 10px;
+    }
+
+    #hotspotForm {
+        padding: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #hotspotForm input[type="text"],
+    #hotspotForm textarea {
+        font-size: 16px;
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    #hotspotForm button {
+        padding: 15px 30px;
+        font-size: 18px;
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    #hotspotForm .choose-file-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+/* Form Active State */
+body.hotspot-form-active {
+    pointer-events: none;
+}
+
+body.hotspot-form-active #hotspotForm,
+body.hotspot-form-active #hotspotForm * {
+    pointer-events: auto;
+}
+
+/* Debug Info */
+#debugInfo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(0,0,0,0.8);
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-family: monospace;
+    font-size: 14px;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    #debugInfo {
+        font-size: 12px;
+        padding: 10px;
+        top: auto;
+        bottom: 100px;
+        right: 10px;
+    }
+}
+
+#panoramaContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Form overlay to prevent panorama interaction */
+.form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 99999;
+    display: none;
+}
+
+#hotspotForm.active + .form-overlay {
+    display: block;
+}
+
+/* Success Message */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100001;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.success-message {
+    background: #28a745;
+    color: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* Dashboard Styles */
+.tour-dashboard-wrap {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
+.tour-dashboard-wrap .postbox {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 3px;
+}
+
+.tour-dashboard-wrap .hndle {
+    font-size: 14px;
+    padding: 8px 12px;
+    margin: 0;
+    line-height: 1.4;
+    border-bottom: 1px solid #ccd0d4;
+}
+
+.tour-dashboard-wrap .inside {
+    padding: 12px;
+    margin: 6px 0 0 0;
+}
+
+.tour-dashboard-wrap .wp-list-table {
+    border-spacing: 0;
+    width: 100%;
+    clear: both;
+    margin: 0;
+}
+
+.tour-dashboard-wrap .wp-list-table th {
+    font-weight: 600;
+    text-align: left;
+    padding: 8px 10px;
+}
+
+.tour-dashboard-wrap .wp-list-table td {
+    padding: 8px 10px;
+    vertical-align: top;
+}
+
+/* Auto Rotate Button */
+#autoRotateControl {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+#autoRotateButton {
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#autoRotateButton img {
+    width: 30px;
+    height: 30px;
+    transition: opacity 0.3s ease;
+}
+
+#autoRotateButton:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+#autoRotateButton.active {
+    background: rgba(0, 123, 255, 0.8);
+}
+
+#autoRotateButton.active img {
+    opacity: 1;
+}
+
+/* Mobile styles for auto-rotate button */
+@media (max-width: 768px) {
+    #autoRotateControl {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    #autoRotateButton {
+        width: 44px;
+        height: 44px;
+    }
+
+    #autoRotateButton img {
+        width: 24px;
+        height: 24px;
+    }
+}
